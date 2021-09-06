@@ -1,0 +1,52 @@
+version: 2
+
+sources:
+  - name: coffee_shop
+    database: analytics-engineers-club
+    schema: coffee_shop
+    tables:
+      - name: customers
+        columns:
+          - name: id
+            description: Unique id for each customer
+            tests:
+              - unique
+              - not_null
+        
+      - name: orders
+        columns: 
+          - name: id
+            description: Unique id for each order
+            tests:
+              - unique
+              - not_null
+
+      - name: order_items
+        columns: 
+          - name: id
+            descripton: Unique id for each order item
+            tests:
+              - unique
+              - not_null
+          - name: order_id
+            description: id from orders table
+          - name: product_id
+            description: id from products table
+
+      - name: products
+        columns: 
+          - name: id
+            descripton: Unique id for each product 
+            tests:
+              - unique
+              - not_null
+          
+      - name: product_prices
+        columns: 
+          - name: id
+            descripton: unique id for each price for each item 
+            tests:
+              - unique
+              - not_null
+          - name: product_id
+            description: id from prodcuts table
