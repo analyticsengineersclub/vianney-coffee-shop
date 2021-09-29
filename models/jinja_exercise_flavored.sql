@@ -9,3 +9,4 @@ select
  
 from {{ ref('weekly_revenue_per_category') }}
 group by 1
+-- this doesn't include 'coffee beans' because of the space. Need to change the name somewhere
