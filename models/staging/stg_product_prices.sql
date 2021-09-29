@@ -1,20 +1,31 @@
-with source as (
+with product_prices as (
 
     select * from {{ source('coffee_shop', 'product_prices') }}
 
 ),
 
-renamed as (
+products as (
+
+    select * from {{ source('coffee_shop', 'products') }}
+
+),
+
+stg_product_prices as (
 
     select
-        id as product_price_id,
-        product_id,
-        price,
-        created_at as price_created_at,
-        ended_at price_ended_at
+        product_prices.id as product_price_id,
+        product_prices.product_id,
+        products.name as product_name,
+        products.category as product_category,
+        product_prices.price,
+        products.created_at as product_created_at,
+        product_prices.created_at as price_created_at,
+        product_prices.ended_at price_ended_at
 
-    from source
+    from product_prices
+    left join products 
+    on product_prices.product_id = products.id
 
 )
 
-select * from renamed
+select * from stg_product_prices

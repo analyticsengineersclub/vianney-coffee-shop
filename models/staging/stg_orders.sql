@@ -8,7 +8,7 @@ renamed as (
 
     select
         id as order_id,
-        created_at as order_crreated_at,
+        created_at as order_created_at,
         customer_id,
         total as num_total_orders,
         address,
